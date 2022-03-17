@@ -1,2 +1,2 @@
-# MayNote-dadm
+# MayNote
 Mobile Application Development - ESTGA
