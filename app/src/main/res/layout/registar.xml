@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/textPassword"
+            android:layout_width="282dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginBottom="5dp"
+            android:ems="10"
+            android:fontFamily="@font/ubuntu_bold"
+            android:hint="Palavra-chave"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/textDateBirth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textEmail" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="17dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="69dp"
+            android:layout_marginEnd="353dp"
+            android:layout_marginBottom="659dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="301dp"
+            android:layout_marginBottom="659dp"
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="Sign up"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnFinishSignup"
+            android:layout_width="282dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginBottom="60dp"
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="Concluir registo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioButton" />
+
+        <EditText
+            android:id="@+id/textFirstName"
+            android:layout_width="131dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="10dp"
+            android:ems="10"
+            android:fontFamily="@font/ubuntu_bold"
+            android:hint="Nome próprio"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/textLastName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/textLastName"
+            android:layout_width="131dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="65dp"
+            android:ems="10"
+            android:fontFamily="@font/ubuntu_bold"
+            android:hint="Apelido"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textFirstName"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/textUsername"
+            android:layout_width="282dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginBottom="5dp"
+            android:ems="10"
+            android:fontFamily="@font/ubuntu_bold"
+            android:hint="Nome de utilizador"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/textEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textFirstName" />
+
+        <EditText
+            android:id="@+id/textEmail"
+            android:layout_width="282dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginBottom="5dp"
+            android:ems="10"
+            android:fontFamily="@font/ubuntu_bold"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toTopOf="@+id/textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textUsername" />
+
+        <TextView
+            android:id="@+id/textDateBirth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="221dp"
+            android:layout_marginBottom="7dp"
+            android:fontFamily="@font/ubuntu"
+            android:text="Data de nascimento"
+            app:layout_constraintBottom_toTopOf="@+id/spinnerDay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textPassword" />
+
+        <TextView
+            android:id="@+id/textGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:layout_marginEnd="301dp"
+            android:layout_marginBottom="3dp"
+            android:text="Género"
+            app:layout_constraintBottom_toTopOf="@+id/chooseGender"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/chooseGender"
+            android:layout_width="282dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginBottom="26dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/btnFinishSignup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <RadioButton
+                android:id="@+id/genderFem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/ubuntu"
+                android:text="Fem"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/genderMasc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/ubuntu"
+                android:text="Masc"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/genderOther"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/ubuntu"
+                android:text="Outro"
+                tools:ignore="TouchTargetSizeCheck" />
+        </RadioGroup>
+
+        <Spinner
+            android:id="@+id/spinnerDay"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/textGender"
+            app:layout_constraintEnd_toStartOf="@+id/spinnerMonth"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textDateBirth"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <Spinner
+            android:id="@+id/spinnerMonth"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="43dp"
+            app:layout_constraintBottom_toTopOf="@+id/chooseGender"
+            app:layout_constraintEnd_toStartOf="@+id/spinnerYear"
+            app:layout_constraintStart_toEndOf="@+id/spinnerDay"
+            app:layout_constraintTop_toBottomOf="@+id/textDateBirth"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Spinner
+            android:id="@+id/spinnerYear"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginBottom="43dp"
+            app:layout_constraintBottom_toTopOf="@+id/chooseGender"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/spinnerMonth"
+            app:layout_constraintTop_toBottomOf="@+id/textPassword"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    </android.support.constraint.ConstraintLayout>
+</LinearLayout>

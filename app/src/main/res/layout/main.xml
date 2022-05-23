@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main">
+
+    <EditText
+        android:id="@+id/textSpace"
+        android:layout_width="282dp"
+        android:layout_height="475dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="75dp"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:ems="10"
+        android:fontFamily="@font/ubuntu"
+        android:gravity="top"
+        android:hint="Escreve aqui o teu espaço"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:outlineProvider="none"
+        android:overScrollMode="always"
+        android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical"
+        android:scrollHorizontally="false"
+        android:singleLine="false"
+        android:textColorHighlight="@android:color/holo_blue_light"
+        android:textColorHint="@android:color/darker_gray"
+        android:textColorLink="@null"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/btnPhoto"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="168dp"
+        android:layout_marginBottom="75dp"
+        android:background="@drawable/roundbtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSpace"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+</android.support.constraint.ConstraintLayout>
