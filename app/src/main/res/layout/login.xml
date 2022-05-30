@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:baselineAligned="false">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1">
@@ -20,9 +20,9 @@
             android:layout_marginEnd="65dp"
             android:layout_weight="1"
             android:background="@drawable/btnroundwhite"
-            android:drawableLeft="@mipmap/googlelogo_foreground"
+            android:drawableStart="@mipmap/googlelogo_foreground"
             android:fontFamily="@font/ubuntu_bold"
-            android:text="Continuar com Google"
+            android:text="@string/continuar_com_google"
             android:textAlignment="viewStart"
             android:textColor="#535353"
             android:textSize="10sp"
@@ -40,9 +40,9 @@
             android:layout_marginEnd="65dp"
             android:layout_weight="1"
             android:background="@drawable/btnroundwhite"
-            android:drawableLeft="@mipmap/facebooklogo_foreground"
+            android:drawableStart="@mipmap/facebooklogo_foreground"
             android:fontFamily="@font/ubuntu_bold"
-            android:text="Continuar com Facebook"
+            android:text="@string/continuar_com_facebook"
             android:textAlignment="viewStart"
             android:textColor="#535353"
             android:textSize="10sp"
@@ -60,7 +60,7 @@
             android:layout_marginBottom="88dp"
             android:fontFamily="@font/ubuntu_bold"
             android:textColor="@color/white"
-            android:text="Criar conta"
+            android:text="@string/criar_conta"
             android:background="@drawable/btnroundblue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,14 +75,15 @@
             android:layout_marginStart="65dp"
             android:layout_marginTop="53dp"
             android:layout_marginEnd="65dp"
-            android:fontFamily="@font/ubuntu_bold"
-            android:textColor="@color/white"
-            android:text="Iniciar sessão"
             android:background="@drawable/btnroundlightblue"
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="@string/iniciar_sessao"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/divider3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textForgotPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/textForgotPassword"
+            tools:ignore="TextContrastCheck" />
 
         <View
             android:id="@+id/divider1"
@@ -118,7 +119,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginEnd="13dp"
             android:fontFamily="@font/ubuntu_light"
-            android:text="ou"
+            android:text="@string/ou"
             app:layout_constraintBottom_toTopOf="@+id/textFieldUsername"
             app:layout_constraintEnd_toStartOf="@+id/divider2"
             app:layout_constraintStart_toEndOf="@+id/divider1"
@@ -134,7 +135,7 @@
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:fontFamily="@font/ubuntu_bold"
-            android:hint="Nome de Utilizador"
+            android:hint="@string/nome_de_utilizador"
             android:inputType="textPersonName"
             android:textColorHint="#858585"
             android:background="@drawable/textfieldround"
@@ -159,7 +160,7 @@
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:fontFamily="@font/ubuntu_bold"
-            android:hint="Palavra-passe"
+            android:hint="@string/palavra_passe"
             android:inputType="textPassword"
             android:textColorHint="#858585"
             android:background="@drawable/textfieldround"
@@ -182,7 +183,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="65dp"
             android:fontFamily="@font/ubuntu"
-            android:text="Esquece-se da palavra-passe?"
+            android:text="@string/esquece_se_da_palavra_passe"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textFieldPassword" />
@@ -202,6 +203,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnStartSession" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
