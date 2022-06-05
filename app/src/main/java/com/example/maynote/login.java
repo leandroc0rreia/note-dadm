@@ -112,8 +112,11 @@ public class login extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        // FirebaseUser user = mAuth.getCurrentUser();
+//        if(mAuth.getCurrentUser() != null){
+//            finish();
+//            sendUserToNextActivity();
+//            Toast.makeText(login.this, "Já se encontra com login ativo!", Toast.LENGTH_SHORT).show();
+//        }
     }
 
 }

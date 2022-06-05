@@ -3,10 +3,8 @@ package com.example.maynote;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -17,12 +15,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.GoogleAuthCredential;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class google_login extends login {
 
     private GoogleSignInClient googleSignInClient;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +32,7 @@ public class google_login extends login {
                 .build();
 
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+        mAuth.getCurrentUser();
 
         Intent signIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signIntent, 100);
@@ -51,16 +51,25 @@ public class google_login extends login {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            sendUserToNextActivity();
-                            Toast.makeText(google_login.this, "Login com Google concluído!", Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
                         }else{
-                            Toast.makeText(google_login.this, ""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            updateUI(null);
                         }
                     }
                 });
             }catch (ApiException e){
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void updateUI(FirebaseUser user) {
+        if(user!=null){
+            sendUserToNextActivity();
+            Toast.makeText(google_login.this, "Login com Google concluído!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(google_login.this, "Login para continuar!",Toast.LENGTH_SHORT).show();
         }
     }
 

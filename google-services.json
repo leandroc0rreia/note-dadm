@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "267131359993",
-    "project_id": "maynote-apps",
-    "storage_bucket": "maynote-apps.appspot.com"
+    "project_number": "154388174263",
+    "project_id": "maynoted",
+    "storage_bucket": "maynoted.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:267131359993:android:efe6fd4000f7f96bc8c828",
+        "mobilesdk_app_id": "1:154388174263:android:9a9d48e3acde1f57e18432",
         "android_client_info": {
           "package_name": "com.example.maynote"
         }
       },
       "oauth_client": [
         {
-          "client_id": "267131359993-cqj0ics2t349n652p0nh89v1f81qabms.apps.googleusercontent.com",
+          "client_id": "154388174263-1olin75bgf7nrv4n3adg9ta4am08emjk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB0qQr1BcXeDDckz7SNR0H9QhC1NmF-ndE"
+          "current_key": "AIzaSyAJv31745GsNfHliZ8xW9zre2q5FcBVRPI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "267131359993-cqj0ics2t349n652p0nh89v1f81qabms.apps.googleusercontent.com",
+              "client_id": "154388174263-1olin75bgf7nrv4n3adg9ta4am08emjk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
