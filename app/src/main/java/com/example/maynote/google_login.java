@@ -34,6 +34,10 @@ public class google_login extends login {
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
         mAuth.getCurrentUser();
 
+        signUp();
+    }
+
+    public void signUp() {
         Intent signIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signIntent, 100);
     }
@@ -51,25 +55,16 @@ public class google_login extends login {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            sendUserToNextActivity();
+                            Toast.makeText(google_login.this, "Login com Google concluído!", Toast.LENGTH_SHORT).show();
                         }else{
-                            updateUI(null);
+                            Toast.makeText(google_login.this, ""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             }catch (ApiException e){
                 e.printStackTrace();
             }
-        }
-    }
-
-    private void updateUI(FirebaseUser user) {
-        if(user!=null){
-            sendUserToNextActivity();
-            Toast.makeText(google_login.this, "Login com Google concluído!", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(google_login.this, "Login para continuar!",Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -61,6 +61,13 @@ public class facebook_login extends login {
         });
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     private void handleFacebookAccessToken(AccessToken token) {
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
@@ -82,7 +89,7 @@ public class facebook_login extends login {
             sendUserToNextActivity();
             Toast.makeText(facebook_login.this, "Login com Facebook concluído!", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(facebook_login.this, "Login para continuar!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(facebook_login.this, "Não foi", Toast.LENGTH_SHORT).show();
         }
     }
 
