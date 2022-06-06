@@ -49,32 +49,8 @@ public class facebook_login extends login {
 
         mCallbackManager = CallbackManager.Factory.create();
 
-<<<<<<< HEAD
-            @Override
-            public void onCancel() {
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-            }
-        });
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    private void handleFacebookAccessToken(AccessToken token) {
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-=======
         LoginManager.getInstance().registerCallback(mCallbackManager,
                 new FacebookCallback<LoginResult>() {
->>>>>>> 32a8205 (facebook funciona mas não guarda dados na DB)
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         finish();
@@ -95,21 +71,11 @@ public class facebook_login extends login {
                 });
     }
 
-<<<<<<< HEAD
-    private void updateUI(FirebaseUser user) {
-        if(user!=null){
-            sendUserToNextActivity();
-            Toast.makeText(facebook_login.this, "Login com Facebook concluído!", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(facebook_login.this, "Não foi", Toast.LENGTH_SHORT).show();
-        }
-=======
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
->>>>>>> 32a8205 (facebook funciona mas não guarda dados na DB)
     }
 
     private void sendUserToNextActivity() {

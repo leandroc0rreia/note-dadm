@@ -57,11 +57,7 @@ public class google_login extends login {
                             sendUserToNextActivity();
                             Toast.makeText(google_login.this, "Login com Google concluído!", Toast.LENGTH_SHORT).show();
                         }else{
-<<<<<<< HEAD
-                            Toast.makeText(google_login.this, ""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-=======
                             Toast.makeText(google_login.this, "Login para continuar!",Toast.LENGTH_SHORT).show();
->>>>>>> 32a8205 (facebook funciona mas não guarda dados na DB)
                         }
                     }
                 });
