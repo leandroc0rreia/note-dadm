@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "154388174263-54ruqtuuqcjkijcg2r4r0dlc0du86kd9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.maynote",
+            "certificate_hash": "b624ad24e10c1450397cab1c62c07f1ff7008140"
+          }
+        },
+        {
           "client_id": "154388174263-1olin75bgf7nrv4n3adg9ta4am08emjk.apps.googleusercontent.com",
           "client_type": 3
         }

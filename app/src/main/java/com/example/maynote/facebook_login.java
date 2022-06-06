@@ -20,6 +20,7 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.Login;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,27 +31,25 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Arrays;
+
 
 public class facebook_login extends login {
 
-    private CallbackManager mCallbackManager;
-    private LoginButton loginButton;
+    private static final String TAG = "FacebookLogin";
     private FirebaseAuth mAuth;
+    private CallbackManager mCallbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(facebook_login.this);
         mAuth = FirebaseAuth.getInstance();
-        mCallbackManager = CallbackManager.Factory.create();
-        loginButton = findViewById(R.id.login_button_facebook);
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
+        LoginManager.getInstance().logInWithReadPermissions(facebook_login.this, Arrays.asList("public_profile"));
 
+        mCallbackManager = CallbackManager.Factory.create();
+
+<<<<<<< HEAD
             @Override
             public void onCancel() {
             }
@@ -72,18 +71,31 @@ public class facebook_login extends login {
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+=======
+        LoginManager.getInstance().registerCallback(mCallbackManager,
+                new FacebookCallback<LoginResult>() {
+>>>>>>> 32a8205 (facebook funciona mas não guarda dados na DB)
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            updateUI(null);
-                        }
+                    public void onSuccess(LoginResult loginResult) {
+                        finish();
+                        sendUserToNextActivity();
+                        Toast.makeText(facebook_login.this, "Login com Facebook concluído!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        finish();
+                        Toast.makeText(facebook_login.this, "Login cancelado!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        Toast.makeText(facebook_login.this, "Error:"+exception, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
+<<<<<<< HEAD
     private void updateUI(FirebaseUser user) {
         if(user!=null){
             sendUserToNextActivity();
@@ -91,6 +103,13 @@ public class facebook_login extends login {
         }else{
             Toast.makeText(facebook_login.this, "Não foi", Toast.LENGTH_SHORT).show();
         }
+=======
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+>>>>>>> 32a8205 (facebook funciona mas não guarda dados na DB)
     }
 
     private void sendUserToNextActivity() {
