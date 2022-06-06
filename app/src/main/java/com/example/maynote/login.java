@@ -112,11 +112,11 @@ public class login extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-//        if(mAuth.getCurrentUser() != null){
-//            finish();
-//            sendUserToNextActivity();
-//            Toast.makeText(login.this, "Já se encontra com login ativo!", Toast.LENGTH_SHORT).show();
-//        }
+        if(mAuth.getCurrentUser() != null){
+            finish();
+            sendUserToNextActivity();
+            Toast.makeText(login.this, "Já se encontra com login ativo!", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
