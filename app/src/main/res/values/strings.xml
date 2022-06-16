@@ -5,7 +5,7 @@
     <string name="criar_conta">Criar conta</string>
     <string name="iniciar_sessao">Iniciar sessão</string>
     <string name="ou">ou</string>
-    <string name="nome_de_utilizador">Nome de Utilizador</string>
+    <string name="email_de_utilizador">E-mail</string>
     <string name="palavra_passe">Palavra-passe</string>
     <string name="esquece_se_da_palavra_passe">Esquece-se da palavra-passe?</string>
     <string name="escreve_aqui_o_teu_espaco">Escreve aqui o teu espaço</string>
@@ -13,5 +13,17 @@
     <string name="facebook_app_id">1369440893524627</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">c43d785d8194d11c595554f341b5b846</string>
+    <string name="todo">TODO</string>
+    <string name="title_activity_menuhamburger">menuhamburger</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 </resources>
 

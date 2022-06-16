@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "154388174263",
+    "firebase_url": "https://maynoted-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "maynoted",
     "storage_bucket": "maynoted.appspot.com"
   },

@@ -84,7 +84,7 @@ public class login extends AppCompatActivity {
         }else if(password.isEmpty() || password.length()<6){
             inputPassword.setError("Introduza a palavra-chave corretamente!");
         }else {
-            progressDialog.setMessage("Wait...");
+            progressDialog.setMessage("Verificando...");
             progressDialog.setTitle("Login");
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
@@ -97,7 +97,9 @@ public class login extends AppCompatActivity {
                         sendUserToNextActivity();
                         Toast.makeText(login.this, "Login concluído com sucesso!", Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(login.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        Toast.makeText(login.this, "Email ou palavra-chave incorreto!", Toast.LENGTH_SHORT).show();
+                        //""+task.getException()
                     }
                 }
             });
@@ -113,9 +115,9 @@ public class login extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if(mAuth.getCurrentUser() != null){
-            finish();
-            sendUserToNextActivity();
-            Toast.makeText(login.this, "Já se encontra com login ativo!", Toast.LENGTH_SHORT).show();
+//            finish();
+//            sendUserToNextActivity();
+//            Toast.makeText(login.this, "Já se encontra com login ativo!", Toast.LENGTH_SHORT).show();
         }
     }
 
