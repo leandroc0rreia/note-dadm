@@ -12,13 +12,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.*;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class registar extends AppCompatActivity {
+public class Registar extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -89,23 +88,22 @@ public class registar extends AppCompatActivity {
                     if (task.isSuccessful()){
                         progressDialog.dismiss();
                         sendUserToNextActivity();
-                        Toast.makeText(registar.this, "Registo concluído com sucesso!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registar.this, "Registo concluído com sucesso!", Toast.LENGTH_SHORT).show();
                         addUser(u);
                     }else{
                         progressDialog.dismiss();
-                        Toast.makeText(registar.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registar.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
 
     }
-    //
-    //  QUANDO NÃO SE PREENCHE UM CAMPO COLOCA-LO ASSIM: "", A DB NÃO ACEITA VAZIOS
-    //
+
     private void sendUserToNextActivity() {
-        Intent switchToMain = new Intent(registar.this, login.class);
+        Intent switchToMain = new Intent(Registar.this, Main.class);
         startActivity(switchToMain);
+        finish();
     }
 
     public String checkField(String email, String password, String fName, String lName, String dateBirth){
@@ -113,7 +111,7 @@ public class registar extends AppCompatActivity {
 
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         String namePattern = "\\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+";
-        String dateBirthPattern = "(?:0[1-9]|[12][0-9]|3[01])[-\\/.](?:0[1-9]|1[012])[-\\/.](?:19\\d{2}|20[01][0-9]|2020)";
+        String dateBirthPattern = "(?:0[1-9]|[12][0-9]|3[01])[-\\/.](?:0[1-9]|1[012])[-\\/.](?:19\\d{2}|20[01][0-9]|2022)";
 
         if(fName.isEmpty() || !fName.matches(namePattern)){
             inputFirstName.setError("Nome inválido ou vazio!");

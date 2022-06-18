@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 
 
-public class facebook_login extends login {
+public class Facebook_Login extends Login {
 
     private static final String TAG = "FacebookLogin";
     private FirebaseAuth mAuth;
@@ -35,8 +35,8 @@ public class facebook_login extends login {
         mAuth = FirebaseAuth.getInstance();
 
         mCallbackManager = CallbackManager.Factory.create();
-        FacebookSdk.sdkInitialize(facebook_login.this);
-        LoginManager.getInstance().logInWithReadPermissions(facebook_login.this, Arrays.asList("public_profile"));
+        FacebookSdk.sdkInitialize(Facebook_Login.this);
+        LoginManager.getInstance().logInWithReadPermissions(Facebook_Login.this, Arrays.asList("public_profile"));
         LoginManager.getInstance().registerCallback(mCallbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
@@ -47,12 +47,12 @@ public class facebook_login extends login {
                     @Override
                     public void onCancel() {
                         finish();
-                        Toast.makeText(facebook_login.this, "Login cancelado!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Facebook_Login.this, "Login cancelado!", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onError(FacebookException exception) {
-                        Toast.makeText(facebook_login.this, "Error:"+exception, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Facebook_Login.this, "Error:"+exception, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -65,9 +65,9 @@ public class facebook_login extends login {
                 if(task.isSuccessful()){
                     finish();
                     sendUserToNextActivity();
-                    Toast.makeText(facebook_login.this, "Login com Facebook concluído!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Facebook_Login.this, "Login com Facebook concluído!", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(facebook_login.this, "Erro do Dev", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Facebook_Login.this, "Erro do Dev", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -81,7 +81,7 @@ public class facebook_login extends login {
 
     private void sendUserToNextActivity() {
         finish();
-        Intent switchToMain = new Intent(facebook_login.this, main.class);
+        Intent switchToMain = new Intent(Facebook_Login.this, Main.class);
         startActivity(switchToMain);
     }
 }

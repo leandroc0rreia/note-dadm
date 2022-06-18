@@ -108,7 +108,7 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="35dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/btnroundlightblue"
@@ -117,8 +117,9 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/divider3"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textForgotPassword"
+            app:layout_constraintTop_toBottomOf="@+id/textFieldPassword"
             tools:ignore="TextContrastCheck" />
 
         <TextView
@@ -167,7 +168,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="40dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="35dp"
             android:background="@drawable/textfieldround"
             android:ems="10"
             android:fontFamily="@font/ubuntu_bold"
@@ -179,26 +180,11 @@
             android:textColor="@color/black"
             android:textColorHint="#858585"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/textForgotPassword"
+            app:layout_constraintBottom_toTopOf="@+id/btnStartSession"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textFieldUsername" />
-
-        <TextView
-            android:id="@+id/textForgotPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="17dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="25dp"
-            android:fontFamily="@font/ubuntu"
-            android:text="@string/esquece_se_da_palavra_passe"
-            app:layout_constraintBottom_toTopOf="@+id/btnStartSession"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textFieldPassword" />
 
         <View
             android:id="@+id/divider3"

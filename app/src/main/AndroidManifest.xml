@@ -26,13 +26,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/lecologo_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Maynote"
+        android:theme="@style/Theme.Maynote.NoActionBar"
         tools:targetApi="31">
-        <activity
-            android:name=".menuhamburger"
-            android:exported="false"
-            android:label="@string/title_activity_menuhamburger"
-            android:theme="@style/Theme.Maynote.NoActionBar" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -45,9 +40,8 @@
         </provider>
 
         <activity
-            android:name=".login"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:name=".Login"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,29 +49,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".registar"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:name=".Registar"
+            android:exported="true"/>
         <activity
-            android:name=".forgotpassword"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:name=".Main"
+            android:exported="true"/>
         <activity
-            android:name=".main"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:name=".Google_Login"
+            android:exported="true"/>
         <activity
-            android:name=".google_login"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity
-            android:name=".facebook_login"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:name=".Facebook_Login"
+            android:exported="true"/>
         <activity
             android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">

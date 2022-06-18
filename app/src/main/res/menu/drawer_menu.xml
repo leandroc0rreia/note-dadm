@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/home"
+            android:iconTint="#173AE6"
+            android:icon="@drawable/icon_home"/>
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="@string/espaco">
+            <menu>
+                <item
+                    android:id="@+id/nav_notes"
+                    android:title="@string/notas"
+                    android:iconTint="#173AE6"
+                    android:icon="@drawable/icon_notes"/>
+                <item
+                    android:id="@+id/nav_lembretes"
+                    android:title="@string/lembretes"
+                    android:iconTint="#173AE6"
+                    android:icon="@drawable/icon_lembretes"/>
+            </menu>
+        </item>
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="@string/perfil">
+            <menu>
+                <item
+                    android:id="@+id/nav_profile"
+                    android:title="@string/conta"
+                    android:iconTint="#173AE6"
+                    android:icon="@drawable/icon_profile"/>
+                <item
+                    android:id="@+id/nav_logout"
+                    android:title="@string/logout"
+                    android:iconTint="#173AE6"
+                    android:icon="@drawable/icon_logout" />
+            </menu>
+        </item>
+    </group>
+</menu>

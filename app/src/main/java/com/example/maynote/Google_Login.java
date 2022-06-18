@@ -15,18 +15,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class google_login extends login {
+public class Google_Login extends Login {
 
     private GoogleSignInClient googleSignInClient;
+    private GoogleSignInOptions googleSignInOptions;
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.client))
                 .requestEmail()
                 .build();
@@ -55,9 +55,9 @@ public class google_login extends login {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             sendUserToNextActivity();
-                            Toast.makeText(google_login.this, "Login com Google concluído!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Google_Login.this, "Login com Google concluído!", Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(google_login.this, "Login para continuar!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Google_Login.this, "Login para continuar!",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -68,8 +68,8 @@ public class google_login extends login {
     }
 
     private void sendUserToNextActivity() {
-        finish();
-        Intent switchToMain = new Intent(google_login.this, main.class);
+        Intent switchToMain = new Intent(Google_Login.this, Main.class);
         startActivity(switchToMain);
+        finish();
     }
 }

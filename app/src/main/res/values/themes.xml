@@ -2,18 +2,19 @@
     <!-- Base application theme. -->
     <style name="Theme.Maynote" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/teal_200</item>
+        <item name="colorPrimary">#173AE6</item>
+        <item name="colorPrimaryDark">#1431BF</item>
+        <item name="colorAccent">#FFC107</item>
         <!-- Customize your theme here. -->
     </style>
 
     <style name="Theme.Maynote.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">#1431BF</item>
     </style>
 
     <style name="Theme.Maynote.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="Theme.Maynote.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
