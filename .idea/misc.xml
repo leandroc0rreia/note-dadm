@@ -23,6 +23,8 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.16286727456940223" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/app_bar_menu_ham.xml" value="0.353125" />
+        <entry key="app/src/main/res/layout/bar.xml" value="0.35208333333333336" />
+        <entry key="app/src/main/res/layout/content_layout.xml" value="0.33" />
         <entry key="app/src/main/res/layout/content_menu_ham.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/content_menuhamburger.xml" value="0.1717325227963526" />
         <entry key="app/src/main/res/layout/forgotpassword.xml" value="0.1707193515704154" />
@@ -33,7 +35,7 @@
         <entry key="app/src/main/res/layout/home.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/main.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/menu.xml" value="0.35208333333333336" />
+        <entry key="app/src/main/res/layout/menu.xml" value="0.2" />
         <entry key="app/src/main/res/layout/menuham.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/menuhamburger.xml" value="0.1717325227963526" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.32571428571428573" />

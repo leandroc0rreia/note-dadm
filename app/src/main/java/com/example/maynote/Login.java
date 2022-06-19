@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,12 +31,12 @@ public class Login extends AppCompatActivity {
     private final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private ProgressDialog progressDialog;
     private Query queryfirstName;
-    private String temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mDatabase =  FirebaseDatabase.getInstance("https://maynoted-default-rtdb.europe-west1.firebasedatabase.app");
@@ -59,6 +60,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 Intent switchToRegistar = new Intent(Login.this, Registar.class);
                 startActivity(switchToRegistar);
+                finish();
             }
         });
         btnGoogle.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +68,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 Intent switchToGoogleLogin = new Intent(Login.this, Google_Login.class);
                 startActivity(switchToGoogleLogin);
+                finish();
             }
         });
         btnFacebook.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +76,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 Intent switchToFacebookLogin = new Intent(Login.this, Facebook_Login.class);
                 startActivity(switchToFacebookLogin);
+                finish();
             }
         });
     }
@@ -95,13 +99,16 @@ public class Login extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        queryfirstName = dbReferenceUser.orderByChild(mAuth.getCurrentUser().getUid());
+                        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        queryfirstName = dbReferenceUser.orderByChild(userID);
                         queryfirstName.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if(snapshot.exists()){
-                                    temp = snapshot.child(mAuth.getCurrentUser().getUid()).child("firstName").getValue().toString();
-                                    Toast.makeText(Login.this, "Bem-vindo, "+temp+"!", Toast.LENGTH_SHORT).show();
+                                    setContentView(R.layout.nav_header);
+                                    String firstNameUser;
+                                    firstNameUser = snapshot.child(userID).child("firstName").getValue().toString();
+                                    Toast.makeText(Login.this, "Bem-vindo, "+firstNameUser+"!", Toast.LENGTH_SHORT).show();
                                 }
                             }
                             @Override
@@ -118,6 +125,7 @@ public class Login extends AppCompatActivity {
                     }
                 }
             });
+
         }
     }
 
@@ -131,21 +139,22 @@ public class Login extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if(mAuth.getCurrentUser() != null){
+            queryfirstName = dbReferenceUser.orderByChild(mAuth.getCurrentUser().getUid());
+            queryfirstName.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        String temp;
+                        temp = snapshot.child(mAuth.getCurrentUser().getUid()).child("firstName").getValue().toString();
+                        Toast.makeText(Login.this, "Olá, "+temp+"!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(Login.this, "Bem-vindo!", Toast.LENGTH_SHORT).show();
+                }
+            });
             sendUserToNextActivity();
-//            queryfirstName = dbReferenceUser.orderByChild(mAuth.getCurrentUser().getUid());
-//            queryfirstName.addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    if(snapshot.exists()){
-//                        temp = snapshot.child(mAuth.getCurrentUser().getUid()).child("firstName").getValue().toString();
-//                        Toast.makeText(Login.this, "Olá, "+temp+"!", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//                    Toast.makeText(Login.this, "Bem-vindo!", Toast.LENGTH_SHORT).show();
-//                }
-//            });
         }
     }
 
