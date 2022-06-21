@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.24100719424460432" />
         <entry key="app/src/main/res/drawable-anydpi/hamburger_menu.xml" value="0.2515" />
         <entry key="app/src/main/res/drawable-anydpi/icon_home.xml" value="0.257" />
         <entry key="app/src/main/res/drawable-anydpi/icon_lembretes.xml" value="0.2515" />
@@ -33,14 +34,17 @@
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/layout/google_login.xml" value="0.264945652173913" />
         <entry key="app/src/main/res/layout/home.xml" value="0.18659420289855072" />
+        <entry key="app/src/main/res/layout/image_scan.xml" value="0.33697916666666666" />
+        <entry key="app/src/main/res/layout/lembretes.xml" value="0.2578125" />
         <entry key="app/src/main/res/layout/login.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/menu.xml" value="0.2" />
         <entry key="app/src/main/res/layout/menuham.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/menuhamburger.xml" value="0.1717325227963526" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.32571428571428573" />
         <entry key="app/src/main/res/layout/nav_header_menu_ham.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/nav_header_menuhamburger.xml" value="0.1716485507246377" />
+        <entry key="app/src/main/res/layout/notas.xml" value="0.2578125" />
         <entry key="app/src/main/res/layout/registar.xml" value="0.33" />
         <entry key="app/src/main/res/layout/test.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.24479166666666666" />

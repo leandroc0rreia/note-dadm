@@ -66,10 +66,6 @@ public class User {
         this.gender = "";
     }
 
-    public void deleteUser(String id){
-
-    }
-
     @Override
     public String toString() {
         return "User{" +

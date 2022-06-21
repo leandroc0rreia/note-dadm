@@ -53,7 +53,7 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         mUser = mAuth.getCurrentUser();
         mDatabase =  FirebaseDatabase.getInstance("https://maynoted-default-rtdb.europe-west1.firebasedatabase.app");
         dbReferenceUser = mDatabase.getReference().child("Users");
-        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();System.out.println("userID: "+userID);
+        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         queryUserData = dbReferenceUser.orderByChild(userID);
         queryUserData.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -61,12 +61,12 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     String firstNameUser,lastNameUser,emailUser;
-                    firstNameAndLastName = (TextView) findViewById(R.id.nameSpace);
-                    emailText = (TextView) findViewById(R.id.emailSpace);
+                    firstNameAndLastName = findViewById(R.id.nameSpace);
+                    emailText = findViewById(R.id.emailSpace);
                     firstNameUser = snapshot.child(userID).child("firstName").getValue().toString();
                     lastNameUser = snapshot.child(userID).child("lastName").getValue().toString();
                     emailUser = snapshot.child(userID).child("email").getValue().toString();
-                    if(firstNameAndLastName!=null) firstNameAndLastName.setText(firstNameUser+" "+lastNameUser);;
+                    if(firstNameAndLastName!=null) firstNameAndLastName.setText(firstNameUser+" "+lastNameUser);
                     if(emailText!=null) emailText.setText(emailUser);
                 }
             }
@@ -86,12 +86,21 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
                 finish();
                 break;
             case R.id.nav_notes:
+                Intent intentNotas = new Intent(Menu.this, Notas.class);
+                startActivity(intentNotas);
+                finish();
                 Toast.makeText(Menu.this, "Em desenvolvimento...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_lembretes:
+                Intent intentLembretes = new Intent(Menu.this, Lembretes.class);
+                startActivity(intentLembretes);
+                finish();
                 Toast.makeText(Menu.this, "Em desenvolvimento...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_profile:
+                Intent intentPerfil = new Intent(Menu.this, Perfil.class);
+                startActivity(intentPerfil);
+                finish();
                 Toast.makeText(Menu.this, "Em desenvolvimento...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
