@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spaces">
+        <item>Notas</item>
+        <item>Lembretes</item>
+        <item>Tarefas</item>
+        <item>Agenda</item>
+        <item>Calendário</item>
+        <item>Horário</item>
+        <item>Mapa de Gantt</item>
+        <item>Mapa Mental</item>
+    </string-array>
+</resources>

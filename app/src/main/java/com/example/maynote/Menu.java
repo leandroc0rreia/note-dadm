@@ -88,19 +88,19 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
             case R.id.nav_notes:
                 Intent intentNotas = new Intent(Menu.this, Notas.class);
                 startActivity(intentNotas);
-                finish();
+                //finish();
                 Toast.makeText(Menu.this, "Em desenvolvimento...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_lembretes:
                 Intent intentLembretes = new Intent(Menu.this, Lembretes.class);
                 startActivity(intentLembretes);
-                finish();
+                //  finish();
                 Toast.makeText(Menu.this, "Em desenvolvimento...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_profile:
                 Intent intentPerfil = new Intent(Menu.this, Perfil.class);
                 startActivity(intentPerfil);
-                finish();
+                //finish();
                 Toast.makeText(Menu.this, "Em desenvolvimento...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:

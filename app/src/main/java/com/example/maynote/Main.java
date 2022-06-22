@@ -13,8 +13,11 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.maynote.databinding.MainBinding;
@@ -31,15 +34,11 @@ import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class Main extends Menu {
 
     private EditText textSpace;
-    private Button btnPhoto;
+    private Button btnPhoto, btnConfirm, btnCancel;
+    private Spinner spinnerSpaces;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private FirebaseDatabase mDatabase;
@@ -62,6 +61,9 @@ public class Main extends Menu {
         dbReferenceUser = mDatabase.getReference().child("Users");
         textSpace = findViewById(R.id.textSpace);
         btnPhoto = findViewById(R.id.btnPhoto);
+        btnConfirm = findViewById(R.id.confirmSpace);
+        btnCancel = findViewById(R.id.cancelSpace);
+        spinnerSpaces = findViewById(R.id.spinnerSpaces);
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         btnPhoto.setOnClickListener(new View.OnClickListener() {
@@ -74,10 +76,74 @@ public class Main extends Menu {
                 }
             }
         });
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textSpace.clearFocus();
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textSpace.setText("");
+                textSpace.clearFocus();
+            }
+        });
+
+        textSpace.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    btnConfirm.setVisibility(View.VISIBLE);
+                    btnCancel.setVisibility(View.VISIBLE);
+                    spinnerSpaces.setVisibility(View.VISIBLE);
+                }else{
+                    btnConfirm.setVisibility(View.INVISIBLE);
+                    btnCancel.setVisibility(View.INVISIBLE);
+                    spinnerSpaces.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        //https://developer.android.com/guide/topics/ui/controls/spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spaces, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSpaces.setAdapter(adapter);
+
+        spinnerSpaces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (parent.getItemAtPosition(position).toString()){
+                    case "Notas":
+                        break;
+                    case "Lembretes":
+                        break;
+                    case "Tarefas":
+                        break;
+                    case "Agenda":
+                        break;
+                    case "Calendário":
+                        break;
+                    case "Horário":
+                        break;
+                    case "Mapa de Gantt":
+                        break;
+                    case "Mapa Mental":
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                textSpace.clearFocus();
+            }
+        });
     }
 
-    private void getText(Bitmap bitmap1){
-        InputImage image = InputImage.fromBitmap(bitmap1,0);
+    private void getText(Bitmap bit){
+        InputImage image = InputImage.fromBitmap(bit,0);
         TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
         Task<Text> result = recognizer.process(image).addOnSuccessListener(new OnSuccessListener<Text>() {
             @Override
@@ -148,4 +214,6 @@ public class Main extends Menu {
             startActivityForResult(photo, RESQUEST_IMAGE_CAPTURE);
         }
     }
+
+
 }

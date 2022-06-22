@@ -53,4 +53,52 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextContrastCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
+    <Button
+        android:id="@+id/confirmSpace"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/btnroundgray"
+        android:fontFamily="@font/ubuntu"
+        android:text="Confirmar"
+        android:textColor="#606060"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/cancelSpace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSpaces" />
+
+    <Button
+        android:id="@+id/cancelSpace"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="75dp"
+        android:background="@drawable/btnroundgray"
+        android:fontFamily="@font/ubuntu"
+        android:text="Cancelar"
+        android:textColor="#606060"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/confirmSpace"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSpaces" />
+
+    <Spinner
+        android:id="@+id/spinnerSpaces"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="75dp"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        style="@style/SpinnerTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSpace" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
