@@ -18,21 +18,32 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 
 
-public class Facebook_Login extends Login {
+public class Facebook_Login extends Activity_Login {
 
     private static final String TAG = "FacebookLogin";
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private CallbackManager mCallbackManager;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference dbReferenceUser;
+    private Query queryUIdExists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
+        mDatabase =  FirebaseDatabase.getInstance("https://maynoted-default-rtdb.europe-west1.firebasedatabase.app");
+        dbReferenceUser = mDatabase.getReference().child("Users");
 
         mCallbackManager = CallbackManager.Factory.create();
         FacebookSdk.sdkInitialize(Facebook_Login.this);
@@ -62,8 +73,12 @@ public class Facebook_Login extends Login {
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 if(task.isSuccessful()){
-                    finish();
+                    String[] arrName = new String[1];
+                    arrName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName().split(" ");
+                    User u = new User(arrName[0],arrName[1],FirebaseAuth.getInstance().getCurrentUser().getEmail(),"","");
+                    addUser(u);
                     sendUserToNextActivity();
                     Toast.makeText(Facebook_Login.this, "Login com Facebook concluído!", Toast.LENGTH_SHORT).show();
                 }else{
@@ -81,7 +96,11 @@ public class Facebook_Login extends Login {
 
     private void sendUserToNextActivity() {
         finish();
-        Intent switchToMain = new Intent(Facebook_Login.this, Main.class);
+        Intent switchToMain = new Intent(Facebook_Login.this, Activity_Main.class);
         startActivity(switchToMain);
+    }
+
+    public Task<Void> addUser(User user){
+        return dbReferenceUser.child(FirebaseAuth.getInstance().getUid()).setValue(user);
     }
 }

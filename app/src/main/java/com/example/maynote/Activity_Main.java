@@ -34,7 +34,9 @@ import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
-public class Main extends Menu {
+import java.util.Date;
+
+public class Activity_Main extends Menu {
 
     private EditText textSpace;
     private Button btnPhoto, btnConfirm, btnCancel;
@@ -43,9 +45,8 @@ public class Main extends Menu {
     private FirebaseUser mUser;
     private FirebaseDatabase mDatabase;
     private DatabaseReference dbReferenceUser;
-    private String userID;
+    private String userID, chooseSpace;
     private MainBinding mainBinding;
-    private InputImage image;
     private static final int RESQUEST_IMAGE_CAPTURE = 1;
     private Bitmap bitmap;
 
@@ -58,7 +59,7 @@ public class Main extends Menu {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mDatabase =  FirebaseDatabase.getInstance("https://maynoted-default-rtdb.europe-west1.firebasedatabase.app");
-        dbReferenceUser = mDatabase.getReference().child("Users");
+        dbReferenceUser = mDatabase.getReference();
         textSpace = findViewById(R.id.textSpace);
         btnPhoto = findViewById(R.id.btnPhoto);
         btnConfirm = findViewById(R.id.confirmSpace);
@@ -81,6 +82,7 @@ public class Main extends Menu {
             @Override
             public void onClick(View v) {
                 textSpace.clearFocus();
+                addToSpace(textSpace.getText().toString(), chooseSpace);
             }
         });
 
@@ -107,7 +109,6 @@ public class Main extends Menu {
             }
         });
 
-        //https://developer.android.com/guide/topics/ui/controls/spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spaces, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSpaces.setAdapter(adapter);
@@ -115,26 +116,8 @@ public class Main extends Menu {
         spinnerSpaces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (parent.getItemAtPosition(position).toString()){
-                    case "Notas":
-                        break;
-                    case "Lembretes":
-                        break;
-                    case "Tarefas":
-                        break;
-                    case "Agenda":
-                        break;
-                    case "Calendário":
-                        break;
-                    case "Horário":
-                        break;
-                    case "Mapa de Gantt":
-                        break;
-                    case "Mapa Mental":
-                        break;
-                }
+                chooseSpace=parent.getItemAtPosition(position).toString();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 textSpace.clearFocus();
@@ -170,7 +153,7 @@ public class Main extends Menu {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Main.this, "Falha ao detetar texto da imagem!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Main.this, "Falha ao detetar texto da imagem!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -215,5 +198,19 @@ public class Main extends Menu {
         }
     }
 
+    private void addToSpace(String text, String chooseSpace){
+        Date data = new Date();
+        String dataPost = data.toLocaleString();
+        switch (chooseSpace){
+            case "Notas":
+                Nota n = new Nota(chooseSpace,text,dataPost);
+                addNota(n);
+                break;
+        }
+        textSpace.setText("");
+    }
 
+    public Task<Void> addNota(Nota nota){
+        return dbReferenceUser.child("Notas").child(mAuth.getUid()).push().setValue(nota);
+    }
 }

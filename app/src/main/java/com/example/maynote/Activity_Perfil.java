@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.maynote.databinding.PerfilBinding;
 
-public class Perfil extends Menu {
+public class Activity_Perfil extends Menu {
 
     private PerfilBinding perfilBinding;
 

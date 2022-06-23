@@ -81,24 +81,22 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_home:
-                Intent intentHome = new Intent(Menu.this, Main.class);
+                Intent intentHome = new Intent(Menu.this, Activity_Main.class);
                 startActivity(intentHome);
                 finish();
                 break;
             case R.id.nav_notes:
-                Intent intentNotas = new Intent(Menu.this, Notas.class);
+                Intent intentNotas = new Intent(Menu.this, Activity_Nota.class);
                 startActivity(intentNotas);
-                //finish();
-                Toast.makeText(Menu.this, "Em desenvolvimento...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_lembretes:
-                Intent intentLembretes = new Intent(Menu.this, Lembretes.class);
+                Intent intentLembretes = new Intent(Menu.this, Activity_Lembretes.class);
                 startActivity(intentLembretes);
                 //  finish();
                 Toast.makeText(Menu.this, "Em desenvolvimento...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_profile:
-                Intent intentPerfil = new Intent(Menu.this, Perfil.class);
+                Intent intentPerfil = new Intent(Menu.this, Activity_Perfil.class);
                 startActivity(intentPerfil);
                 //finish();
                 Toast.makeText(Menu.this, "Em desenvolvimento...", Toast.LENGTH_SHORT).show();
@@ -107,7 +105,7 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
                 if(mUser.getUid()!=null){
                     mAuth.signOut();
                     Toast.makeText(Menu.this, "Até breve!", Toast.LENGTH_SHORT).show();
-                    Intent intentLogout = new Intent(Menu.this, Login.class);
+                    Intent intentLogout = new Intent(Menu.this, Activity_Login.class);
                     startActivity(intentLogout);
                     finish();
                 }

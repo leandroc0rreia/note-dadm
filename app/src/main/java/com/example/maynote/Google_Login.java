@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class Google_Login extends Login {
+public class Google_Login extends Activity_Login {
 
     private GoogleSignInClient googleSignInClient;
     private GoogleSignInOptions googleSignInOptions;
@@ -66,25 +66,12 @@ public class Google_Login extends Login {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                         if (task.isSuccessful()){
-                            queryUIdExists = dbReferenceUser.orderByChild(userID);
-                            queryUIdExists.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    if(!snapshot.exists()){
-                                        User u = new User("Utilizador","",FirebaseAuth.getInstance().getCurrentUser().getEmail(),"","");
-                                        addUser(u);
-                                        sendUserToNextActivity();
-                                        Toast.makeText(Google_Login.this, "Login com Google concluído!", Toast.LENGTH_SHORT).show();
-                                    }else{
-                                        sendUserToNextActivity();
-                                        Toast.makeText(Google_Login.this, "Login com Google concluído!", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-                                    Toast.makeText(Google_Login.this, "Bem-vindo!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            String[] arrName = new String[1];
+                            arrName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName().split(" ");
+                            User u = new User(arrName[0],arrName[1],FirebaseAuth.getInstance().getCurrentUser().getEmail(),"","");
+                            addUser(u);
+                            sendUserToNextActivity();
+                            Toast.makeText(Google_Login.this, "Login com Google concluído!", Toast.LENGTH_SHORT).show();
                         }else{
                             Toast.makeText(Google_Login.this, "Login para continuar!",Toast.LENGTH_SHORT).show();
                         }
@@ -97,7 +84,7 @@ public class Google_Login extends Login {
     }
 
     private void sendUserToNextActivity() {
-        Intent switchToMain = new Intent(Google_Login.this, Main.class);
+        Intent switchToMain = new Intent(Google_Login.this, Activity_Main.class);
         startActivity(switchToMain);
         finish();
     }

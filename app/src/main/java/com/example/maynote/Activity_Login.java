@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class Login extends AppCompatActivity {
+public class Activity_Login extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -58,7 +57,7 @@ public class Login extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent switchToRegistar = new Intent(Login.this, Registar.class);
+                Intent switchToRegistar = new Intent(Activity_Login.this, Activity_Registar.class);
                 startActivity(switchToRegistar);
                 finish();
             }
@@ -66,7 +65,7 @@ public class Login extends AppCompatActivity {
         btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent switchToGoogleLogin = new Intent(Login.this, Google_Login.class);
+                Intent switchToGoogleLogin = new Intent(Activity_Login.this, Google_Login.class);
                 startActivity(switchToGoogleLogin);
                 finish();
             }
@@ -74,7 +73,7 @@ public class Login extends AppCompatActivity {
         btnFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent switchToFacebookLogin = new Intent(Login.this, Facebook_Login.class);
+                Intent switchToFacebookLogin = new Intent(Activity_Login.this, Facebook_Login.class);
                 startActivity(switchToFacebookLogin);
                 finish();
             }
@@ -108,19 +107,19 @@ public class Login extends AppCompatActivity {
                                     setContentView(R.layout.nav_header);
                                     String firstNameUser;
                                     firstNameUser = snapshot.child(userID).child("firstName").getValue().toString();
-                                    Toast.makeText(Login.this, "Bem-vindo, "+firstNameUser+"!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Activity_Login.this, "Bem-vindo, "+firstNameUser+"!", Toast.LENGTH_SHORT).show();
                                 }
                             }
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
-                                Toast.makeText(Login.this, "Bem-vindo!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Activity_Login.this, "Bem-vindo!", Toast.LENGTH_SHORT).show();
                             }
                         });
                         progressDialog.dismiss();
                         sendUserToNextActivity();
                     }else{
                         progressDialog.dismiss();
-                        Toast.makeText(Login.this, "Email ou palavra-chave incorreto!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_Login.this, "Email ou palavra-chave incorreto!", Toast.LENGTH_SHORT).show();
                         //""+task.getException()
                     }
                 }
@@ -130,7 +129,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void sendUserToNextActivity() {
-        Intent switchToMain = new Intent(Login.this, Main.class);
+        Intent switchToMain = new Intent(Activity_Login.this, Activity_Main.class);
         startActivity(switchToMain);
         finish();
     }
@@ -146,12 +145,12 @@ public class Login extends AppCompatActivity {
                     if(snapshot.exists()){
                         String temp;
                         temp = snapshot.child(mAuth.getCurrentUser().getUid()).child("firstName").getValue().toString();
-                        Toast.makeText(Login.this, "Olá, "+temp+"!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_Login.this, "Olá, "+temp+"!", Toast.LENGTH_SHORT).show();
                     }
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(Login.this, "Bem-vindo!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Login.this, "Bem-vindo!", Toast.LENGTH_SHORT).show();
                 }
             });
             sendUserToNextActivity();

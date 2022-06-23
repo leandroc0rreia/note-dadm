@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.maynote.databinding.LembretesBinding;
 
-public class Lembretes extends Menu {
+public class Activity_Lembretes extends Menu {
 
     private LembretesBinding lembretesBinding;
 

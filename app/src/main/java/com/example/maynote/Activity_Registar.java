@@ -17,7 +17,7 @@ import com.google.firebase.auth.*;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Registar extends AppCompatActivity {
+public class Activity_Registar extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -88,11 +88,11 @@ public class Registar extends AppCompatActivity {
                     if (task.isSuccessful()){
                         progressDialog.dismiss();
                         sendUserToNextActivity();
-                        Toast.makeText(Registar.this, "Registo concluído com sucesso!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_Registar.this, "Registo concluído com sucesso!", Toast.LENGTH_SHORT).show();
                         addUser(u);
                     }else{
                         progressDialog.dismiss();
-                        Toast.makeText(Registar.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_Registar.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -101,7 +101,7 @@ public class Registar extends AppCompatActivity {
     }
 
     private void sendUserToNextActivity() {
-        Intent switchToMain = new Intent(Registar.this, Main.class);
+        Intent switchToMain = new Intent(Activity_Registar.this, Activity_Main.class);
         startActivity(switchToMain);
         finish();
     }
