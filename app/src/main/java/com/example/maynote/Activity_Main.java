@@ -5,11 +5,18 @@ import static android.Manifest.permission.CAMERA;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -34,6 +41,8 @@ import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Activity_Main extends Menu {
@@ -49,6 +58,8 @@ public class Activity_Main extends Menu {
     private MainBinding mainBinding;
     private static final int RESQUEST_IMAGE_CAPTURE = 1;
     private Bitmap bitmap;
+    private AlarmManager alarmManager;
+    private PendingIntent pendingIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +93,9 @@ public class Activity_Main extends Menu {
             @Override
             public void onClick(View v) {
                 textSpace.clearFocus();
-                addToSpace(textSpace.getText().toString(), chooseSpace);
+                if(!textSpace.getText().toString().isEmpty()){
+                    addToSpace(textSpace.getText().toString(), chooseSpace);
+                }
             }
         });
 
@@ -203,8 +216,24 @@ public class Activity_Main extends Menu {
         String dataPost = data.toLocaleString();
         switch (chooseSpace){
             case "Notas":
-                Nota n = new Nota(chooseSpace,text,dataPost);
-                addNota(n);
+                String[] titleNota = text.split(System.lineSeparator(),2);
+                if(titleNota.length==1){
+                    Nota n = new Nota(titleNota[0],titleNota[0],dataPost);
+                    addNota(n);
+                }else{
+                    Nota n = new Nota(titleNota[0],titleNota[1],dataPost);
+                    addNota(n);
+                }
+                break;
+            case "Lembretes":
+                String[] titleLembretes = text.split(System.lineSeparator(),3);
+                if(titleLembretes.length<=2){
+                    Toast.makeText(Activity_Main.this, "Preencha, título, data e hora", Toast.LENGTH_SHORT).show();
+                }else{
+                    setAlarm(titleLembretes[1],titleLembretes[2]);
+                    ModelClassLembretes lembretes = new ModelClassLembretes(titleLembretes[0],titleLembretes[1],titleLembretes[2], dataPost);
+                    addLembretes(lembretes);
+                }
                 break;
         }
         textSpace.setText("");
@@ -212,5 +241,33 @@ public class Activity_Main extends Menu {
 
     public Task<Void> addNota(Nota nota){
         return dbReferenceUser.child("Notas").child(mAuth.getUid()).push().setValue(nota);
+    }
+
+    public Task<Void> addLembretes(ModelClassLembretes lembretes){
+        return dbReferenceUser.child("Lembretes").child(mAuth.getUid()).push().setValue(lembretes);
+    }
+
+    //https://github.com/foxandroid/AlarmManagement
+    private void createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "MaynoteReminderChannerl";
+            String description = "Channel for alarm manager";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("Maynote",name,importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    private void setAlarm(String data, String hora){
+//        Date calendar = new Date("dd-M-yyyy hh:mm");
+//        calendar.setDate(Integer.parseInt(data));
+//        calendar.setHours(Integer.parseInt(hora));
+//        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//        Intent i = new Intent(this,AlarmReceiver.class);
+//        pendingIntent = PendingIntent.getBroadcast(this,0,i,0);
+//        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTime(),AlarmManager.INTERVAL_DAY,pendingIntent);
     }
 }

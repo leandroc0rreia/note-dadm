@@ -13,7 +13,9 @@
         <entry key="app/src/main/res/drawable/btnroundblue.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/btnroundgray.xml" value="0.3535" />
         <entry key="app/src/main/res/drawable/btnroundgraylight.xml" value="0.3535" />
+        <entry key="app/src/main/res/drawable/btnroundgreen.xml" value="0.3335" />
         <entry key="app/src/main/res/drawable/btnroundlightblue.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/btnroundred.xml" value="0.3335" />
         <entry key="app/src/main/res/drawable/btnroundwhite.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/hamburger.xml" value="0.2575" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2575" />
@@ -47,7 +49,11 @@
         <entry key="app/src/main/res/layout/nav_header_menu_ham.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/nav_header_menuhamburger.xml" value="0.1716485507246377" />
         <entry key="app/src/main/res/layout/notas.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/recyclerlembretes_click.xml" value="0.353125" />
+        <entry key="app/src/main/res/layout/recyclernota_click.xml" value="0.3365036231884058" />
         <entry key="app/src/main/res/layout/recyclerview_item.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/recyclerviewlembretes_item.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/recyclerviewnota_item.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/registar.xml" value="0.33" />
         <entry key="app/src/main/res/layout/test.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.24479166666666666" />

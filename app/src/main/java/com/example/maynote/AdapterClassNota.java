@@ -10,18 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolder> {
+public class AdapterClassNota extends RecyclerView.Adapter<AdapterClassNota.ViewHolder> {
 
+    private final RecyclerNota_Interface recyclerNota_interface;
     public List<ModelClassNota> notaList;
 
-    AdapterClass(List<ModelClassNota> notaList) {
+    AdapterClassNota(RecyclerNota_Interface recyclerNota_interface, List<ModelClassNota> notaList) {
+        this.recyclerNota_interface = recyclerNota_interface;
         this.notaList = notaList;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_item, parent,false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerviewnota_item, parent,false),recyclerNota_interface);
     }
 
     @Override
@@ -40,11 +42,22 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolder> 
     
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView title, description, date;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, RecyclerNota_Interface nota_interface) {
             super(itemView);
             title = itemView.findViewById(R.id.textNotasTitle);
             description = itemView.findViewById(R.id.textNotasDescription);
             date = itemView.findViewById(R.id.textNotasDate);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(recyclerNota_interface!=null){
+                        int pos = getLayoutPosition();
+                        if (pos!=RecyclerView.NO_POSITION){
+                            recyclerNota_interface.onItemClick(pos);
+                        }
+                    }
+                }
+            });
         }
 
         public void setData(String titulo, String descricao, String data) {

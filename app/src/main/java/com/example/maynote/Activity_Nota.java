@@ -3,6 +3,8 @@ package com.example.maynote;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.maynote.databinding.NotasBinding;
@@ -18,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Activity_Nota extends Menu {
+public class Activity_Nota extends Menu implements RecyclerNota_Interface{
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -29,7 +31,7 @@ public class Activity_Nota extends Menu {
     RecyclerView recyclerNotas;
     LinearLayoutManager layoutManager;
     List<ModelClassNota> modelClassNotas;
-    AdapterClass adapter;
+    AdapterClassNota adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +72,18 @@ public class Activity_Nota extends Menu {
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerNotas.setLayoutManager(layoutManager);
-        adapter = new AdapterClass(modelClassNotas);
+        adapter = new AdapterClassNota(this, modelClassNotas);
         recyclerNotas.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 
-
+    @Override
+    public void onItemClick(int pos) {
+        Intent itemNota = new Intent(Activity_Nota.this, RecyclerNota_Click.class);
+        itemNota.putExtra("titulo",modelClassNotas.get(pos).getTitle());
+        itemNota.putExtra("descricao",modelClassNotas.get(pos).getDescription());
+        itemNota.putExtra("data",modelClassNotas.get(pos).getDate());
+        startActivity(itemNota);
+        finish();
+    }
 }

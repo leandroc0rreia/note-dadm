@@ -12,14 +12,14 @@
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/btnroundgraylight"
-        android:paddingTop="10dp"
         android:paddingLeft="10dp"
+        android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="15dp">
 
 
         <TextView
-            android:id="@+id/textNotasTitle"
+            android:id="@+id/textLembretesTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -34,44 +34,46 @@
             android:textSize="18dp" />
 
         <TextView
-            android:id="@+id/textNotasDescription"
+            android:id="@+id/textLembretesData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textNotasTitle"
+            android:layout_below="@+id/textLembretesTitle"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
-            android:layout_toStartOf="@+id/textNotasDate"
-            android:fontFamily="@font/ubuntu_light"
-            android:text="Descrição"
-            android:textColor="#ACACAC"
-            android:textSize="14dp" />
-
-        <TextView
-            android:id="@+id/textNotasDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
             android:fontFamily="@font/ubuntu"
             android:text="01/01/2001"
             android:textColor="#ACACAC"
-            android:textSize="12dp" />
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/textLembretesHora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textLembretesTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/ubuntu"
+            android:text="17:00"
+            android:textAlignment="textEnd"
+            android:textColor="#435FE8"
+            android:textSize="17dp" />
 
         <ImageView
-            android:id="@+id/btnNotasEdit"
+            android:id="@+id/btnLembretesEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
-            app:srcCompat="@drawable/hamburger_menu" />
+            app:srcCompat="@drawable/icon_lembretes" />
 
 
     </RelativeLayout>
