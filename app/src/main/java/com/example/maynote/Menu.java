@@ -35,6 +35,7 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
     private Query queryUserData;
     private TextView firstNameAndLastName, emailText;
 
+    //https://www.youtube.com/watch?v=pRieCkF1Yts&t=1320s
     public void setContentView(View view){
         drawerLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.menu,null);
         FrameLayout container = drawerLayout.findViewById(R.id.activityContainer);
@@ -92,14 +93,10 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
             case R.id.nav_lembretes:
                 Intent intentLembretes = new Intent(Menu.this, Activity_Lembretes.class);
                 startActivity(intentLembretes);
-                //  finish();
-                Toast.makeText(Menu.this, "Em desenvolvimento...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_profile:
                 Intent intentPerfil = new Intent(Menu.this, Activity_Perfil.class);
                 startActivity(intentPerfil);
-                //finish();
-                Toast.makeText(Menu.this, "Em desenvolvimento...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
                 if(mUser.getUid()!=null){

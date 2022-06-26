@@ -41,7 +41,9 @@ public class AdapterClassNota extends RecyclerView.Adapter<AdapterClassNota.View
     }
     
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView title, description, date;
+        private final TextView title;
+        private final TextView description;
+        private final TextView date;
         public ViewHolder(@NonNull View itemView, RecyclerNota_Interface nota_interface) {
             super(itemView);
             title = itemView.findViewById(R.id.textNotasTitle);

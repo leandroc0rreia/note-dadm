@@ -7,16 +7,17 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -41,8 +42,8 @@ import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Activity_Main extends Menu {
@@ -58,8 +59,6 @@ public class Activity_Main extends Menu {
     private MainBinding mainBinding;
     private static final int RESQUEST_IMAGE_CAPTURE = 1;
     private Bitmap bitmap;
-    private AlarmManager alarmManager;
-    private PendingIntent pendingIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +120,8 @@ public class Activity_Main extends Menu {
                 }
             }
         });
+
+        createNotificationChannel();
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spaces, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -230,7 +231,7 @@ public class Activity_Main extends Menu {
                 if(titleLembretes.length<=2){
                     Toast.makeText(Activity_Main.this, "Preencha, título, data e hora", Toast.LENGTH_SHORT).show();
                 }else{
-                    setAlarm(titleLembretes[1],titleLembretes[2]);
+                    scheduleNotification(titleLembretes[0],titleLembretes[1],titleLembretes[2]);
                     ModelClassLembretes lembretes = new ModelClassLembretes(titleLembretes[0],titleLembretes[1],titleLembretes[2], dataPost);
                     addLembretes(lembretes);
                 }
@@ -249,25 +250,50 @@ public class Activity_Main extends Menu {
 
     //https://github.com/foxandroid/AlarmManagement
     private void createNotificationChannel(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            CharSequence name = "MaynoteReminderChannerl";
-            String description = "Channel for alarm manager";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("Maynote",name,importance);
-            channel.setDescription(description);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
+        String name = "Maynote";
+        String desc = "Descrição";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel channel = new NotificationChannel(Notification.channelID,name,importance);
+        channel.setDescription(desc);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.createNotificationChannel(channel);
     }
 
-    private void setAlarm(String data, String hora){
-//        Date calendar = new Date("dd-M-yyyy hh:mm");
-//        calendar.setDate(Integer.parseInt(data));
-//        calendar.setHours(Integer.parseInt(hora));
-//        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-//        Intent i = new Intent(this,AlarmReceiver.class);
-//        pendingIntent = PendingIntent.getBroadcast(this,0,i,0);
-//        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTime(),AlarmManager.INTERVAL_DAY,pendingIntent);
+    private void scheduleNotification(String titulo,String data, String hora){
+        Intent intent = new Intent(getApplicationContext(), Notification.class);
+        intent.putExtra(Notification.titleExtra,data);
+        intent.putExtra(Notification.messageExtra,hora);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), Notification.notificationID,intent,PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        long time = getTime(data,hora);
+        alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,time,pendingIntent);
+        showAlert(titulo, time);
     }
+
+    private void showAlert(String titulo,Long time) {
+        Date date = new Date(time);
+        DateFormat dateFormat = android.text.format.DateFormat.getLongDateFormat(getApplicationContext());
+        DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(getApplicationContext());
+
+        new AlertDialog.Builder(this)
+                .setTitle("Confirmação de Lembretes")
+                .setMessage("Título: "+titulo+"\nData: "+dateFormat.format(date)+"\nHora: "+timeFormat.format(date))
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .show();
+    }
+
+    private long getTime(String data,String hora) {
+        String[] horas = hora.split(":");
+        String[] datas = data.split("/");
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Integer.parseInt(datas[2]),Integer.parseInt(datas[1]),Integer.parseInt(datas[0]),Integer.parseInt(horas[0]),Integer.parseInt(horas[1]));
+        return calendar.getTimeInMillis();
+    }
+
 }

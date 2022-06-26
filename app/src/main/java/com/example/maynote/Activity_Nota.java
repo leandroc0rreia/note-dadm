@@ -22,6 +22,7 @@ import java.util.List;
 
 public class Activity_Nota extends Menu implements RecyclerNota_Interface{
 
+    //https://www.youtube.com/watch?v=7GPUpvcU1FE
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private FirebaseDatabase mDatabase;

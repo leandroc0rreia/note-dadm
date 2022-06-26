@@ -1,7 +1,6 @@
 package com.example.maynote;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.maynote.databinding.LembretesBinding;
-import com.example.maynote.databinding.NotasBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +22,7 @@ import java.util.List;
 
 public class Activity_Lembretes extends Menu implements RecyclerLembretes_Interface {
 
+    //https://www.youtube.com/watch?v=7GPUpvcU1FE
     private LembretesBinding lembretesBinding;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;

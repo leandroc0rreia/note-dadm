@@ -41,7 +41,9 @@ public class AdapterClassLembretes extends RecyclerView.Adapter<AdapterClassLemb
     }
     
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView title, date, hour;
+        private final TextView title;
+        private final TextView date;
+        private final TextView hour;
         public ViewHolder(@NonNull View itemView, RecyclerLembretes_Interface nota_interface) {
             super(itemView);
             title = itemView.findViewById(R.id.textLembretesTitle);
