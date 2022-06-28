@@ -236,6 +236,9 @@ public class Activity_Main extends Menu {
                     addLembretes(lembretes);
                 }
                 break;
+            default:
+
+                break;
         }
         textSpace.setText("");
     }

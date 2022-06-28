@@ -251,7 +251,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:buttonTint="#5196FF"
-                android:checked="true"
                 android:fontFamily="@font/ubuntu"
                 android:text="Outro"
                 tools:ignore="TouchTargetSizeCheck"

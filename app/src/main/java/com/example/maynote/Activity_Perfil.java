@@ -2,7 +2,10 @@ package com.example.maynote;
 
 import androidx.annotation.NonNull;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -130,18 +133,32 @@ public class Activity_Perfil extends Menu {
             queryProfile.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    //NAO FUNCIONA
-                    if(passwords.equals(cpasswords)){
+                    if(passwords.isEmpty()){
+
+                    }else if(passwords.equals(cpasswords)){
                         mAuth.getCurrentUser().updatePassword(passwords).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                System.out.println("Palavra-passe alterada");
+                                mAuth.getCurrentUser().reload();
                             }
                         });
-                    }else{
-                        System.out.println("Palavra-passe sem efeito");
+                        mAuth.getCurrentUser().updateEmail(emails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                mAuth.getCurrentUser().reload();
+                            }
+                        });
+                    }else if(!cpasswords.equals(passwords)){
+                        cpassword.setError("Palavra-passe diferente!");
+                        return;
                     }
-                    //FUNCIONA
+
+                    mAuth.getCurrentUser().updateEmail(emails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            mAuth.getCurrentUser().reload();
+                        }
+                    });
                     User u = new User(fname.getText().toString(),lname.getText().toString(),email.getText().toString(),dbirth.getText().toString(),gender);
                     snapshot.child(mUser.getUid()).getRef().setValue(u);
                     sendUserToNextActivity();
