@@ -1,2 +1,2 @@
-# MayNote
-Mobile Application Development - ESTGA
+# Mobile Application Development
+Note App
